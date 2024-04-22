@@ -1,0 +1,9 @@
+# Ignore build artifacts
+build/
+CMakeFiles/
+cmake-build-debug/
+cmake-build-release/
+output/
+
+# Ignore OpenCV build artifacts (assuming OpenCV is built locally)
+opencv/build/

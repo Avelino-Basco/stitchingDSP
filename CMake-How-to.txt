@@ -1,0 +1,33 @@
+(1) Create Folder
+(2) Ctrl + Shift + P to bring up Command Path
+Alt: Click command path then type ">"
+(3) Type ">Cmake Quick Start"
+(4) Select amd_x86_x64
+(5) Type ">Cmake Quick Start" again and enter a name
+(6) C++
+(7) Executable
+(8)
+CMakeLists.txt must have
+"
+cmake_minimum_required(VERSION 3.0.0)
+project(needle VERSION 0.1.0 LANGUAGES C CXX)
+
+include(CTest)
+enable_testing()
+
+find_package( OpenCV REQUIRED )
+include_directories( ${OpenCV_INCLUDE_DIRS} )
+
+add_executable(needle main.cpp)
+
+target_link_libraries( needle ${OpenCV_LIBS} )
+
+set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+include(CPack)
+"
+(9) Press "Ctrl+S" and check for OpenCV detected confirmation
+(10) Press "Build" button at the bottom
+(11) Sample Call:
+
+"C:/Users/admin/Desktop/needle/build/Debug/needle.exe" ./sample_imgs/boat1.jpg ./sample_imgs/boat2.jpg ./sample_imgs/boat3.jpg ./sample_imgs/boat4.jpg ./sample_imgs/boat5.jpg ./sample_imgs/boat6.jpg --warp cylindrical
