@@ -9,8 +9,8 @@ using namespace std;
 //naming convention of video files: n.mp4 (e.g. 1.mp4, 2.mp4, 3.mp4)
 
 int main(){
-    string folderPath, fps_str;
-    int fps;
+    string folderPath, fps_str, skip_str;
+    int fps, skip;
     
     cout << "Enter the directory path containing .mp4 files: ";
     getline(cin, folderPath);
@@ -34,9 +34,27 @@ int main(){
         fps = stoi(fps_str);
     }
     
+    cout << "Existing video to frames? (1/0): " << endl;
+    getline(cin, skip_str);
+
+    if(skip_str.length() == 0){
+        skip = 0;
+        std::cout << "No input provided. Proceeding with parsing videos..." << endl;
+    }
+
+    else {
+        skip = stoi(skip_str);
+        if (skip)
+            std::cout << "Skipping parsing videos..." << endl;
+        else
+            std::cout << "Proceeding with parsing videos..." << endl;
+
+
+    }
+
     //MP4 to frames
     //int to keep track of folders
-    int no_of_folders = processMp4Files(folderPath, fps);
+    int no_of_folders = processMp4Files(folderPath, fps, skip);
 
 //looping: stitch frames together
     

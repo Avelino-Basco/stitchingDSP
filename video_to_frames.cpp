@@ -16,21 +16,24 @@ void extractFramesFromVideo(const string& videoFile, const string& outputFolder,
 
     // Execute command
     cout << "Executing command: " << command << endl;
+    
     int result = system(command.c_str());
     if (result != 0) {
         cerr << "Failed to execute ffmpeg for file: " << videoFile << endl;
     }
 }
 
-int processMp4Files(const string& directory, int fps) {
+int processMp4Files(const string& directory, int fps, int skip) {
     int count = 0;
 
     for (const auto& entry : fs::directory_iterator(directory)) {
         count++;
-        if (entry.path().extension() == ".mp4") {
-            string videoFile = entry.path().string();
-            string outputFolder = entry.path().stem().string() + "_frames";
-            extractFramesFromVideo(videoFile, outputFolder, fps);
+        if(!skip){
+            if (entry.path().extension() == ".mp4") {
+                string videoFile = entry.path().string();
+                string outputFolder = entry.path().stem().string() + "_frames";
+                extractFramesFromVideo(videoFile, outputFolder, fps);
+            }
         }
     }
 
