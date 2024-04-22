@@ -21,7 +21,7 @@ int frames_to_video() {
         fps = stoi(fps_string);
     }
     // Specify the input and output filenames
-    std::string input_filename = "C:/Users/admin/Desktop/needle/output/%d.jpg"; // Update the folder path accordingly
+    std::string input_filename = "C:/Users/admin/Desktop/needle/output/stitchedimages/%d.jpg"; // Update the folder path accordingly
     std::string output_filename = "output.mp4";
 
     // Construct the FFmpeg command

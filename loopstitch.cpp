@@ -16,7 +16,7 @@ int loopstitcher( int totalFrames, int cameras) {
     for (int i = 1; i < totalFrames; i++) {
         // Construct the arguments
         stringstream arguments;
-        arguments << "--frameno " << i << " " << cameras << " --output " << i << ".jpg --features akaze --conf_thresh 0.1 --match_conf 0.1 --warp mercator";
+        arguments << "--frameno " << i << " " << cameras << " --output C:\\Users\\admin\\Desktop\\gittest\\stitchingDSP\\output\\stitchedimages\\" << i << ".jpg --features akaze --conf_thresh 0.1 --match_conf 0.1 --warp mercator";
 
         // Convert the stringstream to a string
         string argumentString = arguments.str();
