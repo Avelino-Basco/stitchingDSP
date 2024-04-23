@@ -8,7 +8,7 @@ namespace fs = std::filesystem;
 
 int loopstitcher( int totalFrames, int cameras) {
     // Set the path to your C++ program
-    string programPath = "C:\\Users\\admin\\Desktop\\needle\\build\\Debug\\needle.exe";
+    string programPath = "C:\\Users\\admin\\Desktop\\gittest\\build\\Debug\\needle.exe";
     if (!fs::exists("stitchedimages"))
         fs::create_directory("stitchedimages");
 
@@ -37,7 +37,6 @@ int loopstitcher( int totalFrames, int cameras) {
             cout << "1st frame produced. Continue? (1/0)" << endl;
             getline(cin, cont_str);
                 if(cont_str.length() == 0){
-                    cont = 0;
                     std::cout << "No input provided. Proceeding with stitching..." << endl;
                 }
 
@@ -47,6 +46,7 @@ int loopstitcher( int totalFrames, int cameras) {
                         std::cout << "Proceeding with stitching videos.." << endl;
                     else{
                         std::cout << "Stopping stiching..." << endl;
+                        return 1;
                     }
                 }
         }

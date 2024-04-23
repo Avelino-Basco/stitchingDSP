@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include "opencv2/opencv_modules.hpp"
+#include <opencv2/opencv.hpp> 
 #include <opencv2/core/utility.hpp>
 #include "opencv2/imgcodecs.hpp"
 #include "opencv2/highgui.hpp"
@@ -1142,24 +1143,25 @@ int main(int argc, char* argv[])
 
         LOGLN("Compositing, time: " << ((getTickCount() - t) / getTickFrequency()) << " sec");
 
-
         imwrite(result_name, result);
-
         //wont display 1st image
-        Mat image = imread("C:\\Users\\admin\\Desktop\\gittest\\stitchingDSP\\output\\stitchedimages\\1.jpg");
-        
-        if(! image.data )                              // Check for invalid input
-        {
-            cout <<  "Could not open or find the image" << std::endl ;
-            return -1;
+
+        if(frame_no == 1){
+            Mat image = imread("C:\\Users\\admin\\Desktop\\gittest\\stitchingDSP\\output\\stitchedimages\\1.jpg", IMREAD_UNCHANGED);    
+            LOGLN("Image Read.");
+            if(image.empty())                              // Check for invalid input
+            {
+                cout <<  "Could not open or find the image" << std::endl ;
+                return -1;
+            }
+
+            namedWindow("Preview", WINDOW_NORMAL);
+            imshow("Preview", image);
+            waitKey(0); // Wait for a keystroke in the window
         }
 
-        namedWindow("Preview", WINDOW_AUTOSIZE);
-        imshow("Preview", image);
-        waitKey(5000); // Wait for a keystroke in the window
-        
     }
-
+        
     LOGLN("Finished, total time: " << ((getTickCount() - app_start_time) / getTickFrequency()) << " sec");
     return 0;
 }

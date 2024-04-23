@@ -38,8 +38,8 @@ int main(){
     getline(cin, skip_str);
 
     if(skip_str.length() == 0){
-        skip = 0;
-        std::cout << "No input provided. Proceeding with parsing videos..." << endl;
+        skip = 1;
+        std::cout << "No input provided. Skipping video to frames." << endl;
     }
 
     else {
@@ -81,7 +81,14 @@ int main(){
     }
 
     cout << "max frames:" << to_string(framelimit) << endl;
-    loopstitcher(framelimit, no_of_folders);
+    int early_stop = loopstitcher(framelimit, no_of_folders);
+
+    if(early_stop){
+        cout << "Cancelling stitching." << endl;
+        return 0;
+    }
+
+    
 
     frames_to_video();
         
