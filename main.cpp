@@ -149,6 +149,9 @@ int range_width = -1;
 int frame_no = 0;
 int camera_no = 0;
 
+string fileName = "../../../directoryhandling.yml";
+string folderPath_output_stitchedjpg;
+
 
 static int parseCmdArgs(int argc, char** argv)
 {
@@ -399,6 +402,12 @@ static int parseCmdArgs(int argc, char** argv)
 
         else if(string(argv[i]) == "--frameno")
         {   
+            FileStorage fs(fileName, FileStorage::READ);
+            cout << "[DIR] Reading from output directory from directoryhandling.yml..." << endl;
+            fs["output"] >> folderPath_output_stitchedjpg;
+            fs.release();
+            
+
             if (argc > 2) //default frame 0
             {
                 frame_no = stoi(argv[i + 1]);
@@ -408,7 +417,7 @@ static int parseCmdArgs(int argc, char** argv)
 
             for (int i = 1; i < camera_no; ++i)
             {
-                img_names.push_back("C:/Users/admin/Desktop/needle/output/" + to_string(i) + "_frames/" + to_string(frame_no) + ".jpg");
+                img_names.push_back(folderPath_output_stitchedjpg + "/" + to_string(i) + "_frames/" + to_string(frame_no) + ".jpg");
 
                 //was for special naming purposes !!CAN REMOVE!!
                 /*if (frame_no <= 9){
@@ -1147,7 +1156,7 @@ int main(int argc, char* argv[])
         //wont display 1st image
 
         if(frame_no == 1){
-            Mat image = imread("C:\\Users\\admin\\Desktop\\gittest\\stitchingDSP\\output\\stitchedimages\\1.jpg", IMREAD_UNCHANGED);    
+            Mat image = imread(folderPath_output_stitchedjpg + "/stitchedjpg/1.jpg", IMREAD_UNCHANGED);    
             LOGLN("Image Read.");
             if(image.empty())                              // Check for invalid input
             {
